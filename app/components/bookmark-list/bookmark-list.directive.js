@@ -11,13 +11,13 @@ angular.module('gt.components.bookmark-list', ['generateTagsMap-service', 'getQu
             $scope.deleteBookmark = function(id) {
                 $scope.bookmarks.forEach(function(bookmark, i) {
                     if (bookmark.id === id) {
-                        mongolabFactory.remove({id: bookmark._id.$oid});
-                        
-                        $scope.bookmarks.splice(i ,1);
-                    }
-                });
+                        mongolabFactory.remove({id: bookmark._id.$oid}).$promise.then(function(resource) {
+                            $scope.bookmarks.splice(i ,1);
 
-                $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
+                            $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
+                        });
+                    }
+                });                
             };
 
             $scope.filterTags = function(item) {

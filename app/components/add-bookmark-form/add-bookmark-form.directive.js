@@ -26,28 +26,23 @@ angular.module('gt.components.add-bookmark-form', ['generateTagsMap-service'])
                         tags: tags.value.split(',')
                     };
 
-                    mongolabFactory.save(item).$promise.then(function(resource) {
-                        $scope.bookmarks.push({
-                            id: bookmarkId,
-                            url: bookmarkUrl.value,
-                            title: bookmarkTitle.value,
-                            tags: tags.value.split(',')
-                        });
+                    mongolabFactory.save(item).$promise.then(function(resource) {                        
+                        $scope.bookmarks.push(resource);
 
                         $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
                     });
                 } else if ($scope.editingBookmarkId !== null) {
                     $scope.bookmarks.forEach(function(bookmark) {
                         if (bookmark.id === $scope.editingBookmarkId) {
-                            mongolabFactory.update({id: bookmark._id.$oid}, bookmark);
+                            mongolabFactory.update({id: bookmark._id.$oid}, bookmark).$promise.then(function(resource) {
+                                bookmark.url = bookmarkUrl.value;
+                                bookmark.title = bookmarkTitle.value;
+                                bookmark.tags = tags.value.split(',');
 
-                            bookmark.url = bookmarkUrl.value;
-                            bookmark.title = bookmarkTitle.value;
-                            bookmark.tags = tags.value.split(',');
+                                $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
+                            });
                         }
                     });
-
-                    $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
                 } else {
                     $scope.errorMsg = "Please fill all fields!";
                 }
