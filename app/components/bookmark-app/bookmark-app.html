@@ -1,0 +1,13 @@
+<div style="padding: 50px;" ng-cloak>
+    <h1>Bookmarking App</h1>
+
+    <add-bookmark-form></add-bookmark-form>
+
+    <br><br><br><br>
+
+    <div ng-if="bookmarks.length ? bookmarks : ''">
+        <bookmark-list></bookmark-list>
+
+        <bookmark-tags></bookmark-tags>
+    </div>
+</div>

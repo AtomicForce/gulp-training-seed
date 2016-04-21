@@ -1,0 +1,25 @@
+<div>
+    <label for="bookmarkUrl">Bookmark URL</label>
+    <br>
+    <input type="url" name="bookmarkUrl" id="bookmarkUrl" value="" placeholder="Enter bookmark URL" ng-model="bookmarkUrl">
+
+    <br><br>
+
+    <label for="bookmarkTitle">Bookmark Title</label>
+    <br>
+    <input type="url" name="bookmarkTitle" id="bookmarkTitle" value="" placeholder="Enter bookmark title" ng-model="bookmarkTitle">
+
+    <br><br>
+
+    <label for="tags">Tags: (separated by commas)</label>
+    <br>
+    <input type="url" name="tags" id="tags" value="" placeholder="Enter bookmark tags" ng-model="tags">
+
+    <br><br>
+
+    {{errorMsg}}
+
+    <br><br>
+    <button type="button" ng-click="saveBookmark()">Save</button>
+    <button type="button" ng-click="clearBookmarkInfo()">Clear</button>
+</div>
