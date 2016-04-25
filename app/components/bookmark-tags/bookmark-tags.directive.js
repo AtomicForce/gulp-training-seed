@@ -1,7 +1,7 @@
-angular.module('gt.components.bookmark-tags', ['generateTagsMap-service'])
-.directive('bookmarkTags', function (generateTagsMap) {
+angular.module('gt.components.bookmark-tags', [])
+.directive('bookmarkTags', function () {
     return {
         templateUrl: 'app/components/bookmark-tags/bookmark-tags.html',
-        scope: true        
+        scope: true
     };
 });

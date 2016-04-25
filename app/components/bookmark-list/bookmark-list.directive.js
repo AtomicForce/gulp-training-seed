@@ -1,8 +1,8 @@
-angular.module('gt.components.bookmark-list', ['generateTagsMap-service', 'getQueryParameter-service'])
+angular.module('gt.components.bookmark-list', ['generateTagsMap-service', 'mongolab-factory'])
 .directive('bookmarkList', function (generateTagsMap, mongolabFactory) {
     return {
         templateUrl: 'app/components/bookmark-list/bookmark-list.html',
-        require: '^^bookmarkApp',
+        require: '^bookmarkApp',
         link: function ($scope, $element, $attr, bookmarkAppCtr) {
             $scope.editBookmark = function(id) {
                 bookmarkAppCtr.editBookmarkCtr(id);
@@ -17,7 +17,7 @@ angular.module('gt.components.bookmark-list', ['generateTagsMap-service', 'getQu
                             $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
                         });
                     }
-                });                
+                });
             };
 
             $scope.filterTags = function(item) {

@@ -1,8 +1,9 @@
-angular.module('gt.components.bookmark-app', ['generateTagsMap-service', 'getQueryParameter-service'])
-.directive('bookmarkApp', function (generateTagsMap, getQueryParameter, $timeout, mongolabFactory) {
+angular.module('gt.components.bookmark-app', ['generateTagsMap-service', 'getQueryParameter-service', 'mongolab-factory'])
+.directive('bookmarkApp', function (generateTagsMap, getQueryParameter, mongolabFactory, $timeout) {
     return {
         templateUrl: 'app/components/bookmark-app/bookmark-app.html',
         scope: {},
+        controllerAs: 'ctrl',
         controller: function($scope) {
             this.editBookmarkCtr = function(data) {
                 $scope.edit = $scope.bookmarks.filter(function(bookmark) {
@@ -14,9 +15,10 @@ angular.module('gt.components.bookmark-app', ['generateTagsMap-service', 'getQue
             $scope.tagsMap = {};
             $scope.edit = [];
 
-            $scope.filter = getQueryParameter('filter');
+            $scope.filter = getQueryParameter('filter') || 'none';
 
-            $scope.bookmarks = mongolabFactory.query(function() {
+            mongolabFactory.query().$promise.then(function(data) {
+                $scope.bookmarks = data;
                 $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
             });
 

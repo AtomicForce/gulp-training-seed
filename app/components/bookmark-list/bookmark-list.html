@@ -3,7 +3,7 @@
 
     <ul>
         <li ng-repeat="bookmark in bookmarks | filter:filterTags track by $index">
-            <button type="button" ng-click="editBookmark(bookmark.id)">Edit</button>
+            <button class="editBookmark" type="button" ng-click="editBookmark(bookmark.id)">Edit</button>
             <button type="button" ng-click="deleteBookmark(bookmark.id)">Delete</button>
             &nbsp;&nbsp;&nbsp;
             <span style="font-size: 18px; font-weight: bold;">{{bookmark.title}}</span>

@@ -1,11 +1,9 @@
 angular.module('gt.components.add-bookmark-form', ['generateTagsMap-service'])
-.directive('addBookmarkForm', function (generateTagsMap, mongolabFactory) {
+.directive('addBookmarkForm', function (generateTagsMap, mongolabFactory) {     
     return {
         templateUrl: 'app/components/add-bookmark-form/add-bookmark-form.html',
-        scope: false,
         link: function ($scope, $element, $attr) {
             $scope.editingBookmarkId = null;
-
             $scope.$watch('edit', function() {
                 if ($scope.edit[0]) {
                     $scope.editingBookmarkId = $scope.edit[0].id;
@@ -26,7 +24,7 @@ angular.module('gt.components.add-bookmark-form', ['generateTagsMap-service'])
                         tags: tags.value.split(',')
                     };
 
-                    mongolabFactory.save(item).$promise.then(function(resource) {                        
+                    mongolabFactory.save(item).$promise.then(function(resource) {
                         $scope.bookmarks.push(resource);
 
                         $scope.tagsMap = generateTagsMap($scope.bookmarks, $scope);
