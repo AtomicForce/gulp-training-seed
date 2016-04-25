@@ -1,4 +1,4 @@
-xdescribe('gt.components.add-bookmark-form', function () {
+describe('gt.components.add-bookmark-form', function () {
     var object;
     beforeEach(module('gt.components.add-bookmark-form', function($provide) {
         object = [{ name: 'value' }];
@@ -27,11 +27,13 @@ xdescribe('gt.components.add-bookmark-form', function () {
 
     it('clearBookmarkInfo should clear the form', function () {
         var scope = directive.scope;
+        scope.tags = '';
         scope.clearBookmarkInfo();
     });
 
     it('saveBookmark should save new bookmark', function () {
         var scope = directive.scope;
+        scope.tags = '';
         scope.bookmarks = [
             {
                 id: 0,
@@ -40,7 +42,7 @@ xdescribe('gt.components.add-bookmark-form', function () {
                 },
                 title: 'test',
                 url: 'test',
-                tags: ['test','test']
+                tags: 'test,test'
             }
         ];
         scope.bookmarkUrl = 'a';
@@ -52,6 +54,7 @@ xdescribe('gt.components.add-bookmark-form', function () {
 
     it('saveBookmark should update bookmark', function () {
         var scope = directive.scope;
+        scope.tags = '';
         scope.bookmarks = [
             {
                 id: 0,
@@ -60,7 +63,7 @@ xdescribe('gt.components.add-bookmark-form', function () {
                 },
                 title: 'test',
                 url: 'test',
-                tags: ['test','test']
+                tags: 'test,test'
             }
         ];
         scope.editingBookmarkId = 0;
