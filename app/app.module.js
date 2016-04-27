@@ -5,8 +5,7 @@ angular.module('gdansk-training', [
     'gt.components.bookmark-tags',
     'mongolab-factory',
     'gdanskTraining.templates',
-    'gdanskTraining-constant',
-    'package-version'
+    'gdanskTraining-constant'
 ]).config(function (mongolabFactoryProvider) {
     mongolabFactoryProvider.setConfigs({
         dataBase: 'bookmarks-app',
